@@ -4,10 +4,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ScrollingPageIndicator extends StatefulWidget {
-  const ScrollingPageIndicator({
-    required this.itemCount,
-    required this.controller,
+  const ScrollingPageIndicator({ 
     super.key,
+    required this.itemCount,
+    required this.activeIndex,
     this.dotSize = 6.0,
     this.dotSelectedSize = 10.0,
     this.dotColor = Colors.grey,
@@ -34,7 +34,7 @@ class ScrollingPageIndicator extends StatefulWidget {
 
   final int itemCount;
 
-  final PageController controller;
+  final int activeIndex;
 
   final Axis orientation;
 
@@ -49,26 +49,7 @@ class ScrollingPageIndicator extends StatefulWidget {
 class _ScrollingPageIndicatorState extends State<ScrollingPageIndicator> {
   final Paint _paint = Paint();
 
-  @override
-  void initState() {
-    widget.controller.addListener(_onController);
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(ScrollingPageIndicator oldWidget) {
-    if (widget.controller != oldWidget.controller) {
-      oldWidget.controller.removeListener(_onController);
-      widget.controller.addListener(_onController);
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void dispose() {
-    widget.controller.removeListener(_onController);
-    super.dispose();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +74,7 @@ class _ScrollingPageIndicatorState extends State<ScrollingPageIndicator> {
 
   double get currentPage {
     try {
-      return widget.controller.page ?? 0.0;
+      return widget.activeIndex.toDouble();
     } catch (exception) {
       return 0.0;
     }
