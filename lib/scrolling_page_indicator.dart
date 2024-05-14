@@ -4,8 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ScrollingPageIndicator extends StatefulWidget {
-  const ScrollingPageIndicator({ 
-    super.key,
+  const ScrollingPageIndicator({
     required this.itemCount,
     required this.activeIndex,
     this.dotSize = 6.0,
@@ -48,8 +47,6 @@ class ScrollingPageIndicator extends StatefulWidget {
 
 class _ScrollingPageIndicatorState extends State<ScrollingPageIndicator> {
   final Paint _paint = Paint();
-
-  
 
   @override
   Widget build(BuildContext context) {
